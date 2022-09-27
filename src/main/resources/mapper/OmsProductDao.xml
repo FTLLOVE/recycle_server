@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dgcc.recycle_server.mapper.OmsProductDao">
+    <resultMap id="BaseResultMap" type="com.dgcc.recycle_server.entity.OmsProduct">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="product_name" jdbcType="VARCHAR" property="productName"/>
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+        <result column="old_price" jdbcType="DECIMAL" property="oldPrice"/>
+        <result column="stock" jdbcType="INTEGER" property="stock"/>
+        <result column="swiper_images" jdbcType="VARCHAR" property="swiperImages"/>
+        <result column="is_hot" jdbcType="INTEGER" property="isHot"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="create_user" jdbcType="INTEGER" property="createUser"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="update_user" jdbcType="INTEGER" property="updateUser"/>
+        <result column="category_id" jdbcType="INTEGER" property="categoryId"/>
+        <result column="desc" jdbcType="VARCHAR" property="desc"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id
+        , product_name, price, old_price, stock, swiper_images, is_hot, `status`, create_time,
+    create_user, update_time, update_user, category_id, `desc`
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from oms_product
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from oms_product
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.dgcc.recycle_server.entity.OmsProduct"
+            useGeneratedKeys="true">
+        insert into oms_product (product_name, price, old_price,
+                                 stock, swiper_images, is_hot,
+                                 `status`, create_time, create_user,
+                                 update_time, update_user, category_id,
+                                 `desc`)
+        values (#{productName,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{oldPrice,jdbcType=DECIMAL},
+                #{stock,jdbcType=INTEGER}, #{swiperImages,jdbcType=VARCHAR}, #{isHot,jdbcType=INTEGER},
+                #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=INTEGER},
+                #{updateTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER},
+                #{desc,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.dgcc.recycle_server.entity.OmsProduct" useGeneratedKeys="true">
+        insert into oms_product
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="productName != null">
+                product_name,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="oldPrice != null">
+                old_price,
+            </if>
+            <if test="stock != null">
+                stock,
+            </if>
+            <if test="swiperImages != null">
+                swiper_images,
+            </if>
+            <if test="isHot != null">
+                is_hot,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="createUser != null">
+                create_user,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="updateUser != null">
+                update_user,
+            </if>
+            <if test="categoryId != null">
+                category_id,
+            </if>
+            <if test="desc != null">
+                `desc`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="productName != null">
+                #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="oldPrice != null">
+                #{oldPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="stock != null">
+                #{stock,jdbcType=INTEGER},
+            </if>
+            <if test="swiperImages != null">
+                #{swiperImages,jdbcType=VARCHAR},
+            </if>
+            <if test="isHot != null">
+                #{isHot,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUser != null">
+                #{createUser,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateUser != null">
+                #{updateUser,jdbcType=INTEGER},
+            </if>
+            <if test="categoryId != null">
+                #{categoryId,jdbcType=INTEGER},
+            </if>
+            <if test="desc != null">
+                #{desc,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.dgcc.recycle_server.entity.OmsProduct">
+        update oms_product
+        <set>
+            <if test="productName != null">
+                product_name = #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                price = #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="oldPrice != null">
+                old_price = #{oldPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="stock != null">
+                stock = #{stock,jdbcType=INTEGER},
+            </if>
+            <if test="swiperImages != null">
+                swiper_images = #{swiperImages,jdbcType=VARCHAR},
+            </if>
+            <if test="isHot != null">
+                is_hot = #{isHot,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUser != null">
+                create_user = #{createUser,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser,jdbcType=INTEGER},
+            </if>
+            <if test="categoryId != null">
+                category_id = #{categoryId,jdbcType=INTEGER},
+            </if>
+            <if test="desc != null">
+                `desc` = #{desc,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.dgcc.recycle_server.entity.OmsProduct">
+        update oms_product
+        set product_name  = #{productName,jdbcType=VARCHAR},
+            price         = #{price,jdbcType=DECIMAL},
+            old_price     = #{oldPrice,jdbcType=DECIMAL},
+            stock         = #{stock,jdbcType=INTEGER},
+            swiper_images = #{swiperImages,jdbcType=VARCHAR},
+            is_hot        = #{isHot,jdbcType=INTEGER},
+            `status`      = #{status,jdbcType=INTEGER},
+            create_time   = #{createTime,jdbcType=TIMESTAMP},
+            create_user   = #{createUser,jdbcType=INTEGER},
+            update_time   = #{updateTime,jdbcType=TIMESTAMP},
+            update_user   = #{updateUser,jdbcType=INTEGER},
+            category_id   = #{categoryId,jdbcType=INTEGER},
+            `desc`        = #{desc,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectByProductName" resultType="com.dgcc.recycle_server.entity.OmsProduct">
+        select *
+        from oms_product
+        where product_name = #{productName}
+
+    </select>
+
+</mapper>
